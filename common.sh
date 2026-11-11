@@ -43,7 +43,7 @@ nodejs_setup(){
     npm install &>> $logs_file
     validate $? "Installing dependencies"
 }    
-}
+
 
 app_setup(){
         id roboshop &>> $logs_file
