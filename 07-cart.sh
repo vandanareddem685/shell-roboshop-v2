@@ -8,7 +8,7 @@ check_root
 
 app_setup
 nodejs_setup
-systemd
+systemd_setup
 
 restart
 
