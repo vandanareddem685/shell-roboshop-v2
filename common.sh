@@ -23,7 +23,6 @@ timestamp(){
     date "+%F %T" 
 }
 
-echo "$(timestamp) [INFO] ==== Script started Execution =====" | tee -a $logs_file
 
 
 validate(){
