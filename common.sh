@@ -39,6 +39,10 @@ nodejs_setup(){
     dnf module enable nodejs:24 -y &>> $logs_file
     dnf install nodejs -y &>> $logs_file
     validate $? "Installing nodejs 24"
+
+    npm install &>> $logs_file
+    validate $? "Installing dependencies"
+}    
 }
 
 app_setup(){
@@ -63,8 +67,7 @@ app_setup(){
         unzip "/tmp/$app_name.zip" &>> $logs_file
         validate $? "Unzipping $app_name"
         
-        npm install &>> $logs_file
-        validate $? "Installing dependencies"
+    
 }
 
 systemd_setup(){
