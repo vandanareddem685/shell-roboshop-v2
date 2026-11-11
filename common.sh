@@ -43,28 +43,28 @@ nodejs_setup(){
 
 app_setup(){
         id roboshop &>> $logs_file
-    if [ $? -ne 0 ]; then
-        useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>> $logs_file
-        validate $? "Creating system user"
-    else
-        echo -e "$(timestamp) [INFO] System user roboshop already exist...${Y}SKIPPING${N}"
-    fi
+        if [ $? -ne 0 ]; then
+            useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>> $logs_file
+            validate $? "Creating system user"
+        else
+            echo -e "$(timestamp) [INFO] System user roboshop already exist...${Y}SKIPPING${N}"
+        fi
 
-    rm -rf /app
-    validate $? "Removing old code"
+        rm -rf /app
+        validate $? "Removing old code"
 
-    mkdir -p /app
-    validate $? "Creating app directory"
+        mkdir -p /app
+        validate $? "Creating app directory"
 
-    curl -L -o "/tmp/$app_name.zip" "https://raw.githubusercontent.com/daws-92s/roboshop-documentation/refs/heads/main/artifacts/$app_name-v4.zip" &>> $logs_file
-    validate $? "Downloading $app_name"
+        curl -L -o "/tmp/$app_name.zip" "https://raw.githubusercontent.com/daws-92s/roboshop-documentation/refs/heads/main/artifacts/$app_name-v4.zip" &>> $logs_file
+        validate $? "Downloading $app_name"
 
-    cd /app
-    unzip "/tmp/$app_name.zip" &>> $logs_file
-    validate $? "Unzipping $app_name"
-    
-    npm install &>> $logs_file
-    validate $? "Installing dependencies"
+        cd /app
+        unzip "/tmp/$app_name.zip" &>> $logs_file
+        validate $? "Unzipping $app_name"
+        
+        npm install &>> $logs_file
+        validate $? "Installing dependencies"
 }
 
 systemd_setup(){
