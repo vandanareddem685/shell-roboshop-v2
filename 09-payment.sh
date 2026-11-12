@@ -2,7 +2,8 @@
 
 app_name=payment
 
-
+source ./common.sh
+check_root
 
 app_setup
 
