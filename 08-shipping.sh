@@ -8,8 +8,6 @@ check_root
 app_setup
 java_setup
 
-sed -i "s/DOMAIN_NAME/$domain_name/g" "$scripts_dir/shipping.service"
-cp "$scripts_dir/shipping.service" /etc/systemd/system/shipping.service
 
 dnf install mysql -y &>> $logs_file
 validate $? "Installing MySQL client"
