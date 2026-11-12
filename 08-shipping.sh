@@ -7,8 +7,6 @@ check_root
 
 app_setup
 java_setup
-systemd_setup
-
 
 sed -i "s/DOMAIN_NAME/$domain_name/g" "$scripts_dir/shipping.service"
 cp "$scripts_dir/shipping.service" /etc/systemd/system/shipping.service
@@ -26,6 +24,8 @@ fi
 
 mysql -h "mysql.$domain_name" -uroot -pRoboShop@1 < /app/db/app-user.sql
 validate $? "Creating APP user"
+
+systemd_setup
 
 restart
 
